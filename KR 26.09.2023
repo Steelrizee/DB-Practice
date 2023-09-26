@@ -1,6 +1,3 @@
-##  Вывести все записи из таблицы "Студенты"
-
-```sql
-select * from students;
-```
-![image]()
+- George Washington
+* John Adams
++ Thomas Jefferson

@@ -63,13 +63,14 @@ PRIMARY KEY (order_id, book_id),
 FOREIGN KEY (order_id) REFERENCES Orders(id),
 FOREIGN KEY (book_id) REFERENCES Book(id)
 );
-
+```sql
 
 
 
 
 
 ## Заполненные
+```sql
 CREATE TABLE Book
 id INT PRIMARY KEY,
 title VARCHAR(100),
@@ -182,3 +183,4 @@ INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (2, 2, 1);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (3, 3, 3);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (4, 4, 1);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (5, 5, 2);
+```sql

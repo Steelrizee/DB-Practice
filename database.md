@@ -64,11 +64,6 @@ FOREIGN KEY (order_id) REFERENCES Orders(id),
 FOREIGN KEY (book_id) REFERENCES Book(id)
 );
 
-
-
-
-
-
 ## Заполненные
 ```sql
 CREATE TABLE Book

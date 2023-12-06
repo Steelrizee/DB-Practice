@@ -1,7 +1,7 @@
 OnlineBookShop
 ## Пустые
 ```sql
-CREATE TABLE Book
+CREATE TABLE Book(
 id INT PRIMARY KEY,
 title VARCHAR(100),
 publisher VARCHAR(100),
@@ -166,7 +166,12 @@ INSERT INTO Customer (id, name, email) VALUES (5, 'Michael Wilson', 'michael.wil
 
 CREATE TABLE Orders_details (
 order_id INT,
-bo
+book_id INT,
+quantity INT,
+PRIMARY KEY (order_id, book_id),
+FOREIGN KEY (order_id) REFERENCES Orders(id),
+FOREIGN KEY (book_id) REFERENCES Book(id)
+);
 
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (2, 2, 1);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (3, 3, 3);

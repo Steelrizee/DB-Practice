@@ -124,6 +124,11 @@ FOREIGN KEY (shopping_basket_id) REFERENCES ShoppingBasket(id),
 FOREIGN KEY (book_id) REFERENCES Book(id)
 );
 
+INSERT INTO ShoppingBasket_Book (shopping_basket_id, book_id) VALUES (1, 1);
+INSERT INTO ShoppingBasket_Book (shopping_basket_id, book_id) VALUES (2, 2);
+INSERT INTO ShoppingBasket_Book (shopping_basket_id, book_id) VALUES (3, 3);
+INSERT INTO ShoppingBasket_Book (shopping_basket_id, book_id) VALUES (4, 4);
+INSERT INTO ShoppingBasket_Book (shopping_basket_id, book_id) VALUES (5, 5);
 
 CREATE TABLE Orders (
 id INT PRIMARY KEY,

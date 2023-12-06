@@ -182,3 +182,59 @@ INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (2, 2, 1);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (3, 3, 3);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (4, 4, 1);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (5, 5, 2);
+```
+## Views
+```sql
+1.For Book table:
+CREATE VIEW BookView AS
+SELECT b.id, b.title, p.name as publisher, a.name as author, w.location as warehouse_location
+FROM Book b
+INNER JOIN Publisher p ON b.publisher = p.id
+INNER JOIN Author a ON b.author = a.id
+INNER JOIN Warehouse w ON b.warehouse_id = w.id;
+
+2.For Publisher table:
+CREATE VIEW PublisherView AS
+SELECT id, name
+FROM Publisher;
+
+3.For Author table:
+CREATE VIEW AuthorView AS
+SELECT id, name
+FROM Author;
+
+4.For Warehouse table:
+CREATE VIEW WarehouseView AS
+SELECT id, location, capacity
+FROM Warehouse;
+
+5.For ShoppingBasket_Book table:
+CREATE VIEW ShoppingBasket_BookView AS
+SELECT sb.shopping_basket_id, b.title, b.author
+FROM ShoppingBasket_Book sb
+INNER JOIN Book b ON sb.book_id = b.id;
+
+6.For Orders table:
+CREATE VIEW OrdersView AS
+SELECT o.id, c.name as customer_name, o.order_date
+FROM Orders o
+INNER JOIN Customer c ON o.customer_id = c.id;
+
+7.For ShoppingBasket table:
+CREATE VIEW ShoppingBasketView AS
+SELECT sb.id, c.name as customer_name, sb.created_date
+FROM ShoppingBasket sb
+INNER JOIN Customer c ON sb.customer_id = c.id;
+
+8.For Customer table:
+CREATE VIEW CustomerView AS
+SELECT id, name, email
+FROM Customer;
+
+9.For Orders_details table:
+CREATE VIEW Orders_detailsView AS
+SELECT o.id as order_id, b.title, od.quantity
+FROM Orders o
+INNER JOIN Orders_details od ON o.id = od.order_id
+INNER JOIN Book b ON od.book_id = b.id;
+

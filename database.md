@@ -237,4 +237,102 @@ SELECT o.id as order_id, b.title, od.quantity
 FROM Orders o
 INNER JOIN Orders_details od ON o.id = od.order_id
 INNER JOIN Book b ON od.book_id = b.id;
+```
+## Triggers
+```sql
+1. Для обновления общего количества книг на складе после добавления книги в таблицу ShoppingBasket_Book:
+
+CREATE OR REPLACE FUNCTION update_book_quantity()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    UPDATE Warehouse
+    SET capacity = capacity - 1 -- Уменьшите количество на 1
+    WHERE id = NEW.warehouse_id;
+  
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_book_quantity_trigger
+AFTER INSERT ON ShoppingBasket_Book
+FOR EACH ROW
+EXECUTE FUNCTION update_book_quantity();
+
+2. Чтобы обновить общее количество книг на складе после удаления книги из таблицы ShoppingBasket_Book:
+
+CREATE OR REPLACE FUNCTION restore_book_quantity()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    UPDATE Warehouse
+    SET capacity = capacity + 1 -- Увеличить количество на 1
+    WHERE id = OLD.warehouse_id;
+  
+    RETURN OLD;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER restore_book_quantity_trigger
+AFTER DELETE ON ShoppingBasket_Book
+FOR EACH ROW
+EXECUTE FUNCTION restore_book_quantity();
+
+3. Чтобы автоматически назначить издателя книге на основе данных автора:
+
+CREATE OR REPLACE FUNCTION assign_publisher()
+RETURNS TRIGGER AS
+$$
+DECLARE
+    publisher_id INT;
+BEGIN
+    SELECT id INTO publisher_id
+    FROM Publisher
+    WHERE name = NEW.author;
+    
+    IF publisher_id IS NOT NULL THEN
+        UPDATE Book
+        SET publisher = (SELECT name FROM Publisher WHERE id = publisher_id)
+        WHERE id = NEW.id;
+    ELSE
+        -- Assign a default publisher if the author's publisher is not found
+        UPDATE Book
+        SET publisher = 'Unknown'
+        WHERE id = NEW.id;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER assign_publisher_trigger
+BEFORE INSERT ON Book
+FOR EACH ROW
+EXECUTE FUNCTION assign_publisher();
+
+4. чтобы обновить created_date корзины покупок после добавления нового заказа:
+
+CREATE OR REPLACE FUNCTION update_basket_created_date()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    UPDATE ShoppingBasket
+    SET created_date = CURRENT_DATE
+    WHERE id = NEW.shopping_basket_id;
+  
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_basket_created_date_trigger
+AFTER INSERT ON Orders
+FOR EACH ROW
+EXECUTE FUNCTION update_basket_created_date();
+```
+
+ 
 

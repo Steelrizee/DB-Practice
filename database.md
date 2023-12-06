@@ -1,4 +1,6 @@
-OnlineBookShop
+## OnlineBookShop Diagram
+![image](https://github.com/Steelrizee/DB-Practice/assets/144115438/bfc7d7e1-34ef-48a5-9d74-28d207cbece8)
+
 ## Пустые
 ```sql
 CREATE TABLE Book(

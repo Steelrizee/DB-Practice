@@ -63,10 +63,10 @@ PRIMARY KEY (order_id, book_id),
 FOREIGN KEY (order_id) REFERENCES Orders(id),
 FOREIGN KEY (book_id) REFERENCES Book(id)
 );
-
+```
 ### Заполненные
 ```sql
-CREATE TABLE Book
+CREATE TABLE Book(
 id INT PRIMARY KEY,
 title VARCHAR(100),
 publisher VARCHAR(100),
@@ -75,7 +75,7 @@ warehouse_id INT,
 FOREIGN KEY (warehouse_id) REFERENCES Warehouse(id)
 );
 
-INSERT INTO Book (id, title, publisher, author, warehouse_id) VALUES (1, 'Harry Potter and the Philosopher's Stone', 'Bloomsbury Publishing', 'J.K. Rowling', 1);
+INSERT INTO Book (id, title, publisher, author, warehouse_id) VALUES (1, 'Harry Potter and the Philosophers Stone', 'Bloomsbury Publishing', 'J.K. Rowling', 1);
 INSERT INTO Book (id, title, publisher, author, warehouse_id) VALUES (2, 'It', 'Viking Press', 'Stephen King', 2);
 INSERT INTO Book (id, title, publisher, author, warehouse_id) VALUES (3, 'A Game of Thrones', 'Bantam Spectra', 'George R.R. Martin', 3);
 INSERT INTO Book (id, title, publisher, author, warehouse_id) VALUES (4, 'The Da Vinci Code', 'Doubleday', 'Dan Brown', 4);
@@ -166,14 +166,8 @@ INSERT INTO Customer (id, name, email) VALUES (5, 'Michael Wilson', 'michael.wil
 
 CREATE TABLE Orders_details (
 order_id INT,
-book_id INT,
-quantity INT,
-PRIMARY KEY (order_id, book_id),
-FOREIGN KEY (order_id) REFERENCES Orders(id),
-FOREIGN KEY (book_id) REFERENCES Book(id)
-);
+bo
 
-INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (1, 1, 2);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (2, 2, 1);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (3, 3, 3);
 INSERT INTO Orders_details (order_id, book_id, quantity) VALUES (4, 4, 1);

@@ -1,5 +1,6 @@
 ## OnlineBookShop Diagram
-![image](https://github.com/Steelrizee/DB-Practice/assets/144115438/6b4c8fb8-480e-4226-90ae-aa785fa7f52c)
+![image](https://github.com/Steelrizee/DB-Practice/assets/144115438/9952b07e-d875-45cc-99ff-a2f0c457f294)
+
 
 
 

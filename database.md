@@ -277,6 +277,7 @@ SELECT * FROM Orders WHERE customer_id = 1;
 
 10. Get all the orders made on a specific date:
 SELECT * FROM Orders WHERE order_date = '2022-01-10';
+```
 
 ## Triggers
 ```sql

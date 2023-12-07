@@ -240,6 +240,41 @@ FROM Orders o
 INNER JOIN Orders_details od ON o.id = od.order_id
 INNER JOIN Book b ON od.book_id = b.id;
 ```
+
+## Select
+```sql
+1. Get all the books:
+SELECT * FROM Book;
+
+2. Get all the publishers:
+SELECT * FROM Publisher;
+
+3. Get all the authors:
+SELECT * FROM Author;
+
+4. Get all the warehouses:
+SELECT * FROM Warehouse;
+
+5. Get all the books in a specific warehouse:
+SELECT * FROM Book WHERE warehouse_id = 1;
+
+6. Get all the books published by a specific publisher:
+SELECT * FROM Book WHERE publisher = 'Bloomsbury Publishing';
+
+7. Get all the books written by a specific author:
+SELECT * FROM Book WHERE author = 'J.K. Rowling';
+
+8. Get all the books in a shopping basket:
+SELECT b.* FROM Book b
+JOIN ShoppingBasket_Book sb ON b.id = sb.book_id
+WHERE sb.shopping_basket_id = 1;
+
+9. Get all the orders made by a specific customer:
+SELECT * FROM Orders WHERE customer_id = 1;
+
+10. Get all the orders made on a specific date:
+SELECT * FROM Orders WHERE order_date = '2022-01-10';
+
 ## Triggers
 ```sql
 1. Для обновления общего количества книг на складе после добавления книги в таблицу ShoppingBasket_Book:

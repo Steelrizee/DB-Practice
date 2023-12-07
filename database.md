@@ -376,4 +376,4 @@ EXECUTE FUNCTION update_basket_created_date();
 ```
 ## Отчет
 [OnlineBookShop) 23.docx](https://github.com/Steelrizee/DB-Practice/files/13594135/OnlineBookShop.23.docx)
-```
+

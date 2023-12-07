@@ -1,5 +1,6 @@
 ## OnlineBookShop Diagram
-![image](https://github.com/Steelrizee/DB-Practice/assets/144115438/bfc7d7e1-34ef-48a5-9d74-28d207cbece8)
+![image](https://github.com/Steelrizee/DB-Practice/assets/144115438/768a6eea-d44b-4273-99af-f8ca6d040d05)
+
 
 ## Пустые
 ```sql
